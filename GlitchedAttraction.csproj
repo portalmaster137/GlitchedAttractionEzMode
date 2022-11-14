@@ -83,5 +83,8 @@
   <ItemGroup>
     <Compile Include="Patches\enableDebugText.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Patches\FreddlePatch.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
