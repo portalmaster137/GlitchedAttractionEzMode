@@ -45,7 +45,13 @@ namespace GlitchedAttraction
                 .Where(t => t.GetInterfaces().Contains(typeof(ITranspiler)));
             if (DEBUG)
             {
-                MelonLogger.Msg("GlitchedAttraction Patching " + patches.Count() + " patches");
+                MelonLogger.Msg(
+                    "GlitchedAttraction Patching "
+                        + patches.Count()
+                        + " patches and "
+                        + trans.Count()
+                        + " transpilers"
+                );
                 MelonLogger.Msg("Starting Transpilers");
             }
             foreach (var transpiler in trans)
