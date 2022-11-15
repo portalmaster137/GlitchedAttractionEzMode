@@ -28,7 +28,6 @@ namespace GlitchedAttraction
             DEBUG = prefs.debug.Value;
             if (MASTER_ENABLED)
             {
-                MelonLogger.Msg("Patching Modulars");
                 PatchModular();
                 MelonLogger.Msg("GlitchedAttraction All Patches Applied");
             }
@@ -41,27 +40,30 @@ namespace GlitchedAttraction
             var patches = typeof(Mod).Assembly
                 .GetTypes()
                 .Where(t => t.GetInterfaces().Contains(typeof(IPatch)));
-
+            var trans = typeof(Mod).Assembly
+                .GetTypes()
+                .Where(t => t.GetInterfaces().Contains(typeof(ITranspiler)));
             if (DEBUG)
             {
                 MelonLogger.Msg("GlitchedAttraction Patching " + patches.Count() + " patches");
                 MelonLogger.Msg("Starting Transpilers");
             }
-            foreach (var patch in patches)
+            foreach (var transpiler in trans)
             {
-                var ins = Activator.CreateInstance(patch) as IPatch;
-                if (ins.patchType == PatchType.Transpiler)
+                var instance = Activator.CreateInstance(transpiler) as ITranspiler;
+                harmony.Patch(instance.Original, transpiler: instance.Patch);
+                if (DEBUG)
                 {
-                    harmony.Patch(ins.Original, transpiler: ins.Patch);
-                    if (DEBUG)
-                    {
-                        MelonLogger.Msg("GlitchedAttraction Transpiled " + ins.debugName);
-                    }
+                    MelonLogger.Msg(
+                        ConsoleColor.DarkGreen,
+                        "GlitchedAttraction Patched " + instance.debugName
+                    );
                 }
             }
+
             if (DEBUG)
             {
-                MelonLogger.Msg("Starting Prefixes and Postfixes");
+                MelonLogger.Msg(ConsoleColor.Green, "Starting Prefixes and Postfixes");
             }
             foreach (var patch in patches)
             {
@@ -88,6 +90,13 @@ namespace GlitchedAttraction
         HarmonyMethod Patch { get; }
         string debugName { get; }
         PatchType patchType { get; }
+    }
+
+    public interface ITranspiler
+    {
+        System.Reflection.MethodBase Original { get; }
+        HarmonyMethod Patch { get; }
+        string debugName { get; }
     }
 
     public enum PatchType
