@@ -53,10 +53,10 @@ namespace GlitchedAttraction
                 if (ins.patchType == PatchType.Transpiler)
                 {
                     harmony.Patch(ins.Original, transpiler: ins.Patch);
-                }
-                if (DEBUG)
-                {
-                    MelonLogger.Msg("GlitchedAttraction Transpiled " + ins.debugName);
+                    if (DEBUG)
+                    {
+                        MelonLogger.Msg("GlitchedAttraction Transpiled " + ins.debugName);
+                    }
                 }
             }
             if (DEBUG)
