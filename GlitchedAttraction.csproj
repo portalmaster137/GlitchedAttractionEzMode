@@ -63,40 +63,10 @@
     <Compile Include="LoadPrefs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patches\nBBPatch.cs" />
+    <Compile Include="Patches\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patches\nightmarionnePatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\nFredbearPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\ToyChicaPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\WFreddyPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\pFoxyPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\enableDebugText.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Patches\FreddlePatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Transpilers\DreadbearHideSpot.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Transpilers\FFoxyPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Transpilers\FFreddyPatch.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Transpilers\BalloraPatch.cs" />
+    <Compile Include="Transpilers\*.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
