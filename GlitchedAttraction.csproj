@@ -89,5 +89,14 @@
   <ItemGroup>
     <Compile Include="Transpilers\DreadbearHideSpot.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transpilers\FFoxyPatch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transpilers\FFreddyPatch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transpilers\BalloraPatch.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

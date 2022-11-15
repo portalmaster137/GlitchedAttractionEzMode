@@ -29,7 +29,7 @@ namespace GlitchedAttraction
             if (MASTER_ENABLED)
             {
                 PatchModular();
-                MelonLogger.Msg("GlitchedAttraction All Patches Applied");
+                MelonLogger.Msg(ConsoleColor.Green, "GlitchedAttraction All Patches Applied");
             }
         }
 
