@@ -28,13 +28,24 @@ public class DreadbearHideTranspile : IPatch
         var codes = new List<CodeInstruction>(instructions);
         //What is is: IL_0018: ldc.i4.0
         //Desired: IL_0018: ldc.i4.1
-
+        if (GlitchedAttraction.Mod.DEBUG)
+        {
+            foreach (var code in codes)
+            {
+                MelonLogger.Msg("[TRANS] | " + code.ToString());
+            }
+        }
         //Find the index of the instruction
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_0);
 
         //Replace the instruction
         codes[index] = new CodeInstruction(OpCodes.Ldc_I4_1);
+        if (GlitchedAttraction.Mod.DEBUG)
+        {
+            MelonLogger.Msg("[TRANS] | IL_0018: ldc.i4.0 NULL >>> " + codes[index].ToString());
 
+            MelonLogger.Msg("[TRANS] | Dreadbear_Hide.OnTriggerExit Transpiled");
+        }
         //Return the new instructions
 
         return codes.AsEnumerable();
