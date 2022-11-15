@@ -20,7 +20,7 @@ public class DreadbearHideTranspile : IPatch
                 BindingFlags.Public | BindingFlags.Static
             )
         );
-    public string debugName => "DreadbearHideTranspile";
+    public string debugName => "Dreadbear_Hide.OnTriggerExit";
     public PatchType patchType => PatchType.Transpiler;
 
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
