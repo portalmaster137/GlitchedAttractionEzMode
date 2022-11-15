@@ -41,6 +41,28 @@ namespace GlitchedAttraction
             var patches = typeof(Mod).Assembly
                 .GetTypes()
                 .Where(t => t.GetInterfaces().Contains(typeof(IPatch)));
+
+            if (DEBUG)
+            {
+                MelonLogger.Msg("GlitchedAttraction Patching " + patches.Count() + " patches");
+                MelonLogger.Msg("Starting Transpilers");
+            }
+            foreach (var patch in patches)
+            {
+                var ins = Activator.CreateInstance(patch) as IPatch;
+                if (ins.patchType == PatchType.Transpiler)
+                {
+                    harmony.Patch(ins.Original, transpiler: ins.Patch);
+                }
+                if (DEBUG)
+                {
+                    MelonLogger.Msg("GlitchedAttraction Transpiled " + ins.debugName);
+                }
+            }
+            if (DEBUG)
+            {
+                MelonLogger.Msg("Starting Prefixes and Postfixes");
+            }
             foreach (var patch in patches)
             {
                 var patchInstance = Activator.CreateInstance(patch) as IPatch;
@@ -71,6 +93,7 @@ namespace GlitchedAttraction
     public enum PatchType
     {
         Prefix,
-        Postfix
+        Postfix,
+        Transpiler
     }
 }
